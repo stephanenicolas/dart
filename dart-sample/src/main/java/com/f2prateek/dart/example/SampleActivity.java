@@ -30,52 +30,55 @@ import com.f2prateek.dart.Optional;
 import org.parceler.Parcels;
 
 public class SampleActivity extends Activity {
-  public static final String DEFAULT_EXTRA_VALUE = "a default value";
+    public static final String DEFAULT_EXTRA_VALUE = "a default value";
 
-  private static final String EXTRA_STRING = "ExtraString";
-  private static final String EXTRA_INT = "ExtraInt";
-  private static final String EXTRA_PARCELABLE = "ExtraParcelable";
-  private static final String EXTRA_OPTIONAL = "ExtraOptional";
-  private static final String EXTRA_PARCEL = "ExtraParcel";
-  private static final String EXTRA_WITH_DEFAULT = "ExtraWithDefault";
+    private static final String EXTRA_STRING = "ExtraString";
+    private static final String EXTRA_INT = "ExtraInt";
+    private static final String EXTRA_PARCELABLE = "ExtraParcelable";
+    private static final String EXTRA_OPTIONAL = "ExtraOptional";
+    private static final String EXTRA_PARCEL = "ExtraParcel";
+    private static final String EXTRA_WITH_DEFAULT = "ExtraWithDefault";
 
-  @InjectExtra(EXTRA_STRING) String stringExtra;
-  @InjectExtra(EXTRA_INT) int intExtra;
-  @InjectExtra(EXTRA_PARCELABLE) ComplexParcelable parcelableExtra;
-  @InjectExtra(EXTRA_PARCEL) ExampleParcel parcelExtra;
-  @Optional @InjectExtra(EXTRA_OPTIONAL) String optionalExtra;
-  @Optional @InjectExtra(EXTRA_WITH_DEFAULT) String defaultExtra = DEFAULT_EXTRA_VALUE;
+    @InjectExtra(EXTRA_STRING) String stringExtra;
+    @InjectExtra(EXTRA_INT) int intExtra;
+    @InjectExtra(EXTRA_PARCELABLE) ComplexParcelable parcelableExtra;
+    @InjectExtra(EXTRA_PARCEL) ExampleParcel parcelExtra;
+    @butterknife.Optional @InjectExtra(EXTRA_OPTIONAL) String optionalExtra;
+    @Optional @InjectExtra(EXTRA_WITH_DEFAULT) String defaultExtra = DEFAULT_EXTRA_VALUE;
 
-  @InjectView(R.id.string_extra) TextView stringExtraTextView;
-  @InjectView(R.id.int_extra) TextView intExtraTextView;
-  @InjectView(R.id.parcelable_extra) TextView parcelableExtraTextView;
-  @InjectView(R.id.optional_extra) TextView optionalExtraTextView;
-  @InjectView(R.id.parcel_extra) TextView parcelExtraTextView;
-  @InjectView(R.id.default_extra) TextView defaultExtraTextView;
+    @InjectView(R.id.string_extra) TextView stringExtraTextView;
+    @InjectView(R.id.int_extra) TextView intExtraTextView;
+    @InjectView(R.id.parcelable_extra) TextView parcelableExtraTextView;
+    @InjectView(R.id.optional_extra) TextView optionalExtraTextView;
+    @InjectView(R.id.parcel_extra) TextView parcelExtraTextView;
+    @InjectView(R.id.default_extra) TextView defaultExtraTextView;
 
-  public static Intent getLaunchIntent(Context context, String string, int anInt,
-      ComplexParcelable complexParcelable, ExampleParcel exampleParcel) {
-    Intent intent = new Intent(context, SampleActivity.class);
-    intent.putExtra(SampleActivity.EXTRA_STRING, string);
-    intent.putExtra(SampleActivity.EXTRA_INT, anInt);
-    intent.putExtra(SampleActivity.EXTRA_PARCELABLE, complexParcelable);
-    intent.putExtra(SampleActivity.EXTRA_PARCEL, Parcels.wrap(exampleParcel));
-    return intent;
-  }
+    public static Intent getLaunchIntent(Context context,
+                                         String string,
+                                         int anInt,
+                                         ComplexParcelable complexParcelable,
+                                         ExampleParcel exampleParcel) {
+        Intent intent = new Intent(context, SampleActivity.class);
+        intent.putExtra(SampleActivity.EXTRA_STRING, string);
+        intent.putExtra(SampleActivity.EXTRA_INT, anInt);
+        intent.putExtra(SampleActivity.EXTRA_PARCELABLE, complexParcelable);
+        intent.putExtra(SampleActivity.EXTRA_PARCEL, Parcels.wrap(exampleParcel));
+        return intent;
+    }
 
-  @Override protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_sample);
+    @Override protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_sample);
 
-    ButterKnife.inject(this);
-    Dart.inject(this);
+        ButterKnife.inject(this);
+        Dart.inject(this);
 
-    // Contrived code to use the "injected" extras.
-    stringExtraTextView.setText(stringExtra);
-    intExtraTextView.setText(String.valueOf(intExtra));
-    parcelableExtraTextView.setText(String.valueOf(parcelableExtra));
-    optionalExtraTextView.setText(String.valueOf(optionalExtra));
-    parcelExtraTextView.setText(String.valueOf(parcelExtra.getName()));
-    defaultExtraTextView.setText(String.valueOf(defaultExtra));
-  }
+        // Contrived code to use the "injected" extras.
+        stringExtraTextView.setText(stringExtra);
+        intExtraTextView.setText(String.valueOf(intExtra));
+        parcelableExtraTextView.setText(String.valueOf(parcelableExtra));
+        optionalExtraTextView.setText(String.valueOf(optionalExtra));
+        parcelExtraTextView.setText(String.valueOf(parcelExtra.getName()));
+        defaultExtraTextView.setText(String.valueOf(defaultExtra));
+    }
 }

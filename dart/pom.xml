@@ -41,6 +41,12 @@
       <artifactId>android</artifactId>
       <scope>provided</scope>
     </dependency>
+    <dependency>
+      <groupId>com.jakewharton</groupId>
+      <artifactId>butterknife</artifactId>
+      <scope>compile</scope>
+    </dependency>
+
   </dependencies>
 
   <build>
