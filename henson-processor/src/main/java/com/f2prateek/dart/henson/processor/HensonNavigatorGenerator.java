@@ -87,6 +87,9 @@ public class HensonNavigatorGenerator extends BaseGenerator {
   }
 
   @Override public String getFqcn() {
+    if ("".equals(packageName)) {
+      return HENSON_NAVIGATOR_CLASS_NAME;
+    }
     return packageName + "." + HENSON_NAVIGATOR_CLASS_NAME;
   }
 
