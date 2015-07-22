@@ -18,7 +18,7 @@ import javax.lang.model.element.Modifier;
  * without having to know them explicitly.
  * This generator creates the Henson class.
  * The intent builders are created by {@link IntentBuilderGenerator}.
- * @see {@link com.f2prateek.dart.henson.Henson} to use this code at runtime.
+ * See Henson (Generated code) to use this code at runtime.
  * Note: Due to the fact that gradle uses a different classpath to invoke
  * an annotation processor (it doesn't use the same classpath as the one that is used
  * to compile the classes to be compiled), this we can't use android classes in a generator.
